@@ -1,0 +1,3 @@
+# Core tool runs on the Python standard library only.
+# The optional --llm enrichment uses the Anthropic SDK:
+anthropic>=0.39.0
