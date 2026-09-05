@@ -1,0 +1,104 @@
+{
+  "generated_at": "2026-09-05T18:47:01.811649+00:00",
+  "alerts": [
+    {
+      "alert_id": "AL-2026-0001",
+      "score": 85,
+      "band": "HIGH",
+      "factors": [
+        {
+          "rule": "structuring_pattern",
+          "points": 25,
+          "reason": "7 deposits under the 1000 USD threshold inside 24h (total 6740 USD). This is the classic structuring shape."
+        },
+        {
+          "rule": "new_account",
+          "points": 15,
+          "reason": "Account is only 9 days old. New accounts with immediate activity carry more risk."
+        },
+        {
+          "rule": "basic_kyc",
+          "points": 10,
+          "reason": "Customer is on basic KYC only. Identity assurance is limited."
+        },
+        {
+          "rule": "volume_outlier",
+          "points": 15,
+          "reason": "Transaction (6,740 USD) is more than 5x the customer's average monthly volume (300 USD)."
+        },
+        {
+          "rule": "intent_to_evade",
+          "points": 20,
+          "reason": "Customer's own words in support: \"asked in chat how to split a transfer so it is not flagged\"."
+        }
+      ],
+      "recommended_action": "Escalate for EDD and SAR/STR review. Consider a temporary hold pending source-of-funds."
+    },
+    {
+      "alert_id": "AL-2026-0002",
+      "score": 5,
+      "band": "LOW",
+      "factors": [
+        {
+          "rule": "velocity",
+          "points": 15,
+          "reason": "Large movement (92000 USD) inside a 6h window."
+        },
+        {
+          "rule": "established_vip",
+          "points": -10,
+          "reason": "Established, fully verified VIP with a long history. Mitigant, not a pass."
+        }
+      ],
+      "recommended_action": "Likely closable after a quick sanity check. Document the rationale."
+    },
+    {
+      "alert_id": "AL-2026-0003",
+      "score": 100,
+      "band": "HIGH",
+      "factors": [
+        {
+          "rule": "third_party_funding",
+          "points": 20,
+          "reason": "Rule indicates funds may not belong to the account holder."
+        },
+        {
+          "rule": "basic_kyc",
+          "points": 10,
+          "reason": "Customer is on basic KYC only. Identity assurance is limited."
+        },
+        {
+          "rule": "volume_outlier",
+          "points": 15,
+          "reason": "Transaction (15,200 USD) is more than 5x the customer's average monthly volume (1,200 USD)."
+        },
+        {
+          "rule": "no_source_of_funds",
+          "points": 10,
+          "reason": "No stated source of funds on file."
+        },
+        {
+          "rule": "repeat_alerts",
+          "points": 10,
+          "reason": "2 prior alerts in the last 90 days."
+        },
+        {
+          "rule": "high_risk_counterparty",
+          "points": 20,
+          "reason": "Counterparty attributed as: high-risk P2P (cluster attribution). Attribution is a lead, not a verdict. Corroborate before relying on it."
+        },
+        {
+          "rule": "distant_from_known_service",
+          "points": 5,
+          "reason": "3 hops to the nearest attributed service. Harder to explain the path."
+        },
+        {
+          "rule": "admitted_third_party",
+          "points": 20,
+          "reason": "Customer's own words in support: \"said the money is not mine, I am receiving it for a friend\"."
+        }
+      ],
+      "recommended_action": "Escalate for EDD and SAR/STR review. Consider a temporary hold pending source-of-funds."
+    }
+  ]
+}
